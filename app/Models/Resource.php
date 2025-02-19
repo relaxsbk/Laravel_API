@@ -18,6 +18,11 @@ class Resource extends Model
         'available'
     ];
 
+    public function scopeAvailable($query)
+    {
+        return $query->where('available', true);
+    }
+
     public function booking(): HasMany
     {
         return $this->hasMany(Booking::class);
