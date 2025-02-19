@@ -19,8 +19,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 //            тип enum в sqlite отсутствует
-//            $table->enum('role', RoleEnum::toArray())->default(RoleEnum::User);
-            $table->string('role')->default(RoleEnum::User);
+            $table->enum('role', [RoleEnum::Admin->value, RoleEnum::User->value])->default(RoleEnum::User->value);
+//            $table->string('role')->default(RoleEnum::User);
             $table->rememberToken();
             $table->timestamps();
         });
