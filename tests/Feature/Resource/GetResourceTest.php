@@ -57,10 +57,10 @@ class GetResourceTest extends TestCase
 
     public function test_not_found_resource(): void
     {
-        $response = $this->get(route(' resources.show', ['resource' => 0]));
+        $response = $this->get(route('resources.show', ['resource' => 0]));
 
         $response->assertNotFound();
         $response->assertJsonStructure(['message']);
-        $response->assertJson(['message' => __('messages.model_not_found')]);
+        $response->assertJson(['message' => __('messages.route_not_found')]);
     }
 }

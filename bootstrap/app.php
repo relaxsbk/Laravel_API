@@ -1,9 +1,11 @@
 <?php
 
+use App\Exceptions\ResourceNotFoundException;
 use App\Http\Middleware\DraftResourceMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -18,5 +20,10 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        $exceptions->renderable(function (ResourceNotFoundException $e) {
+            return responseFailed($e->getMessage(), $e->getCode());
+        });
+        $exceptions->renderable(function (NotFoundHttpException $e) {
+            return responseFailed(__('messages.route_not_found'), 404);
+        });
     })->create();
