@@ -19,3 +19,8 @@
 ```bash
   sail artisan migrate --seed
 ```
+>### Для тестов 
+
+```bash
+  sail artisan migrate --env=testing
+```

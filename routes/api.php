@@ -19,6 +19,7 @@ Route::controller(BookingController::class)->prefix('v1')->group(function () {
 Route::controller(UserController::class)->prefix('v1')->group(function () {
     Route::get('/profile', 'profile')->name('profile');
     Route::post('/logout', 'logout')->name('logout');
+    Route::post('/logoutAll', 'logoutAll')->name('logoutAll');
 });
 
 Route::controller(AuthController::class)->prefix('v1')->group(function () {
