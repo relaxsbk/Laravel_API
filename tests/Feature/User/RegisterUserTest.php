@@ -16,8 +16,8 @@ class RegisterUserTest extends TestCase
     public function test_user_register(): void
     {
         $data = [
-            'name' => 'Test User',
-            'email' => 'test@test.com',
+            'name' => 'Relax',
+            'email' => 'relax@test.com',
             'password' => 'password',
             'password_confirmation' => 'password',
         ];
@@ -31,8 +31,8 @@ class RegisterUserTest extends TestCase
         ]);
 
         $this->assertDatabaseHas('users', [
-            'name' => 'Test User',
-            'email' => 'test@test.com',
+            'name' => $data['name'],
+            'email' => $data['email'],
         ]);
 
     }
