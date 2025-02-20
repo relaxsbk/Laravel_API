@@ -10,15 +10,27 @@ class AuthUserTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_login_successful(): void
+    protected User $user;
+
+    protected function setUp(): void
     {
+        parent::setUp();
+
         $data = [
             'name' => 'Relax',
             'email' => 'relax@test.com',
             'password' => 'password',
         ];
 
-        $user = User::factory()->create($data);
+        $this->user = User::factory()->create($data);
+    }
+
+    public function test_login_successful(): void
+    {
+        $data = [
+          'email' => $this->user->email,
+          'password' => $this->user->password,
+        ];
 
         $response = $this->postJson(route('login'), $data);
 

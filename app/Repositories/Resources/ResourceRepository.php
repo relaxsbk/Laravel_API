@@ -14,4 +14,9 @@ class ResourceRepository
             ->available()
             ->get();
     }
+
+    public function createResource(array $data)
+    {
+        return Resource::query()->create($data);
+    }
 }
