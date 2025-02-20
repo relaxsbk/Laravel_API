@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'v1'], function () {
     Route::apiResource('resources', ResourceController::class)->middleware(['draftResource'])->only(['show']);
-
 });
 
 Route::controller(BookingController::class)->prefix('v1')->group(function () {
@@ -17,15 +16,15 @@ Route::controller(BookingController::class)->prefix('v1')->group(function () {
 });
 
 //по окончанию вынести в файл
-Route::controller(UserController::class)->group(function () {
+Route::controller(UserController::class)->prefix('v1')->group(function () {
     Route::get('/profile', 'profile')->name('profile');
     Route::post('/logout', 'logout')->name('logout');
 });
 
-Route::controller(AuthController::class)->group(function () {
+Route::controller(AuthController::class)->prefix('v1')->group(function () {
     Route::post('/login', 'login')->name('login');
 });
 
-Route::controller(RegisterController::class)->group(function () {
+Route::controller(RegisterController::class)->prefix('v1')->group(function () {
     Route::post('/register', 'register')->name('register');
 });
