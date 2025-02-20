@@ -19,6 +19,11 @@ class Resource extends Model
         'available'
     ];
 
+    public function isDraft(): bool
+    {
+        return $this->available === 0;
+    }
+
     public function createdAt(): string
     {
         return Carbon::parse($this->created_at)->toDateString();
