@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,12 +19,39 @@ class Booking extends Model
         'end_time',
     ];
 
-    public function resource(): BelongsTo
+    protected $casts = [
+        'start_time' => 'datetime',
+        'end_time' => 'datetime',
+    ];
+
+    public function createdAt(): string
+    {
+        return Carbon::parse($this->created_at)->toDateString();
+    }
+
+    public function updatedAt(): string
+    {
+        return Carbon::parse($this->updated_at)->toDateString();
+    }
+
+    public function startTime(): string
+    {
+        return Carbon::parse($this->start_time)->toDateTimeString();
+    }
+
+    public function endTime(): string
+    {
+        return Carbon::parse($this->end_time)->toDateTimeString();
+    }
+
+
+
+    public function resources(): BelongsTo
     {
         return $this->belongsTo(Resource::class);
     }
 
-    public function user(): BelongsTo
+    public function users(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

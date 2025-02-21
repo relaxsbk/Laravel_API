@@ -9,4 +9,6 @@ return [
     'successful_logout_from_all_devices' => "Successful logout from all devices",
     'resource_deleted' => "Resource deleted successfully",
     'access_denied' => "Access denied",
+    'resource_is_already_booked_for_this_time' => "Resource is already booked for this time",
+    'booking_created_successfully' => "Booking created successfully"
 ];

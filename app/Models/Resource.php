@@ -35,7 +35,7 @@ class Resource extends Model
         return $query->where('available', true);
     }
 
-    public function booking(): HasMany
+    public function bookings(): HasMany
     {
         return $this->hasMany(Booking::class);
     }
