@@ -8,4 +8,5 @@ return [
     'logout_successfully' => "Logout successfully",
     'successful_logout_from_all_devices' => "Successful logout from all devices",
     'resource_deleted' => "Resource deleted successfully",
+    'access_denied' => "Access denied",
 ];

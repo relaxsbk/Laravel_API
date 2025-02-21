@@ -13,6 +13,8 @@ class StoreResourceTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected User $user;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -65,4 +67,29 @@ class StoreResourceTest extends TestCase
         $response->assertStatus(422)
             ->assertJsonValidationErrors(['name', 'type', 'description']);
     }
+
+    public function test_store_resource_as_authorized_user(): void
+    {
+        $this->user = User::factory()->create(['role' => 'user']);
+        Sanctum::actingAs($this->user);
+
+        $data = [
+            'name' => fake()->name,
+            'type' => fake()->jobTitle(),
+            'description' => fake()->text(),
+            'available' => true
+        ];
+
+        $response = $this->postJson(route('resources.store'), $data);
+        $response->assertForbidden();
+
+        $response->assertJsonStructure([
+            'message'
+        ]);
+
+        $response->assertJson([
+            'message' => __('messages.access_denied'),
+        ]);
+    }
+
 }

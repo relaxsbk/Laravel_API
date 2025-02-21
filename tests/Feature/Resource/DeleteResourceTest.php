@@ -51,4 +51,22 @@ class DeleteResourceTest extends TestCase
 
         $response->assertStatus(404);
     }
+
+    public function test_delete_resource_as_authorized_user(): void
+    {
+        $this->user = User::factory()->create(['role' => 'user']);
+        Sanctum::actingAs($this->user);
+
+
+        $response = $this->deleteJson(route('resources.destroy', $this->resource->id));
+        $response->assertForbidden();
+
+        $response->assertJsonStructure([
+            'message'
+        ]);
+
+        $response->assertJson([
+            'message' => __('messages.access_denied'),
+        ]);
+    }
 }

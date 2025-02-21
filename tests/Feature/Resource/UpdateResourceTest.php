@@ -87,4 +87,24 @@ class UpdateResourceTest extends TestCase
         ]);
     }
 
+    public function test_update_resource_as_authorized_user(): void
+    {
+        $this->user = User::factory()->create(['role' => 'user']);
+        Sanctum::actingAs($this->user);
+
+        $data = [
+            'name' => fake()->name,
+        ];
+
+        $response = $this->patchJson(route('resources.update', $this->resource->id), $data);
+        $response->assertForbidden();
+
+        $response->assertJsonStructure([
+            'message'
+        ]);
+
+        $response->assertJson([
+            'message' => __('messages.access_denied'),
+        ]);
+    }
 }

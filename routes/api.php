@@ -9,8 +9,9 @@ require __DIR__ . '/groups/user.group.php';
 
 Route::group(['prefix' => 'v1'], function () {
       Route::apiResource('resources', ResourceController::class);
+      Route::apiResource('bookings', BookingController::class)->only(['store', 'destroy']);
+
+      Route::get('/resources/{$resource}/bookings', [BookingController::class, 'index']);
 });
 
-Route::controller(BookingController::class)->prefix('v1')->group(function () {
-    //
-});
+
