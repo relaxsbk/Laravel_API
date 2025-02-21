@@ -38,15 +38,21 @@ class ResourceController extends Controller implements HasMiddleware
     }
 
 
-    public function update(UpdateResourceRequest $request, string $id)
+    public function update(UpdateResourceRequest $request, Resource $resource)
     {
-        //
+        $resource->update($request->validated());
+
+        return $this->show($resource->fresh());
     }
 
 
-    public function destroy(string $id)
+    public function destroy(Resource $resource)
     {
-        //
+        $resource->delete();
+
+        return response()->json([
+            'message' => __('messages.resource_deleted'),
+        ]);
     }
 
     public static function middleware()
