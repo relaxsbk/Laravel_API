@@ -5,12 +5,15 @@ namespace App\Http\Controllers\api\v1\Booking;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Booking\StoreBookingRequest;
 use App\Http\Resources\Booking\BookingResource;
+use App\Models\Booking;
 use App\Models\Resource;
 use App\Repositories\Bookings\BookingRepository;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Carbon;
 
-class BookingController extends Controller
+class BookingController extends Controller implements HasMiddleware
 {
     public function index()
     {
@@ -38,8 +41,21 @@ class BookingController extends Controller
         ], 201);
     }
 
-    public function destroy()
+    public function destroy(Booking $booking)
     {
-        //
+        $booking->delete();
+
+        return response()->json([
+            'message' => __('messages.booking_deleted_successfully')
+        ]);
+    }
+
+
+    public static function middleware()
+    {
+        return [
+            new Middleware(['auth:sanctum'], only: ['store','destroy']),
+            new Middleware(['cancelBooking'], only: ['destroy']),
+        ];
     }
 }

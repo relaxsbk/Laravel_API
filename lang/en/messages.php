@@ -10,5 +10,7 @@ return [
     'resource_deleted' => "Resource deleted successfully",
     'access_denied' => "Access denied",
     'resource_is_already_booked_for_this_time' => "Resource is already booked for this time",
-    'booking_created_successfully' => "Booking created successfully"
+    'booking_created_successfully' => "Booking created successfully",
+    'booking_deleted_successfully' => "Booking deleted successfully",
+    'you_have_no_rights' => 'You have no rights',
 ];

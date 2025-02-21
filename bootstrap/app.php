@@ -2,6 +2,7 @@
 
 use App\Exceptions\ResourceNotFoundException;
 use App\Http\Middleware\AdminAccessMiddleware;
+use App\Http\Middleware\CancellationOfBookingMiddleware;
 use App\Http\Middleware\DraftResourceMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -19,6 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->api()->alias([
             'draftResource' => DraftResourceMiddleware::class,
             'isAdmin' => AdminAccessMiddleware::class,
+            'cancelBooking' => CancellationOfBookingMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
