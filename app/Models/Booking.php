@@ -44,7 +44,17 @@ class Booking extends Model
         return Carbon::parse($this->end_time)->toDateTimeString();
     }
 
-
+    public function scopeIsOverLapping($query, $startTime, $endTime)
+    {
+        return $query->where(function ($query) use ($startTime, $endTime) {
+            $query->whereBetween('start_time', [$startTime, $endTime])
+                ->orWhereBetween('end_time', [$startTime, $endTime])
+                ->orWhere(function ($query) use ($startTime, $endTime) {
+                    $query->where('start_time', '<=', $endTime)
+                        ->where('end_time', '>=', $endTime);
+                });
+        });
+    }
 
     public function resources(): BelongsTo
     {
