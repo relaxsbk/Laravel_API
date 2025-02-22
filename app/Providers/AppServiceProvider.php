@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Http\Resources\Resource\MiniResourceResource;
 use App\Http\Resources\Resource\ResourceResource;
+use App\Models\Booking;
+use App\Observers\BookingObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Booking::observe(BookingObserver::class);
         MiniResourceResource::withoutWrapping();
         ResourceResource::withoutWrapping();
     }
