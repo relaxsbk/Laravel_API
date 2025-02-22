@@ -9,9 +9,10 @@ require __DIR__ . '/groups/user.group.php';
 
 Route::group(['prefix' => 'v1'], function () {
       Route::apiResource('resources', ResourceController::class);
+      Route::get('/resources/{resource}/bookings', [ResourceController::class, 'showWithBookings'])->name('resources.bookings');
+
       Route::apiResource('bookings', BookingController::class)->except(['index', 'update']);
 
-      Route::get('/resources/{resource}/bookings', [BookingController::class, 'index']);
 });
 
 

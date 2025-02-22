@@ -20,9 +20,6 @@ class DraftResourceMiddleware
         $resource = $request->route('resource');
 
         if ($resource->isDraft()) {
-            return response()->json([
-                'message' => __('messages.resource_not_found'),
-            ], 404);
             throw new ResourceNotFoundException();
         }
 

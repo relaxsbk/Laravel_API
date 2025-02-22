@@ -7,9 +7,9 @@ use App\Http\Requests\Resource\StoreResourceRequest;
 use App\Http\Requests\Resource\UpdateResourceRequest;
 use App\Http\Resources\Resource\MiniResourceResource;
 use App\Http\Resources\Resource\ResourceResource;
+use App\Http\Resources\Resource\ResourceWithBookingsResource;
 use App\Models\Resource;
 use App\Repositories\Resources\ResourceRepository;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 
@@ -37,6 +37,10 @@ class ResourceController extends Controller implements HasMiddleware
         return new ResourceResource($resource);
     }
 
+    public function showWithBookings(Resource $resource)
+    {
+        return new ResourceWithBookingsResource($resource->load('bookings'));
+    }
 
     public function update(UpdateResourceRequest $request, Resource $resource)
     {
@@ -58,8 +62,8 @@ class ResourceController extends Controller implements HasMiddleware
     public static function middleware()
     {
         return [
-            new Middleware(['auth:sanctum', 'isAdmin'], except:['index','show']),
-            new Middleware(['draftResource'], only:['show']),
+            new Middleware(['auth:sanctum', 'isAdmin'], except:['index','show','showWithBookings']),
+            new Middleware(['draftResource'], only:['show','showWithBookings']),
         ];
     }
 }

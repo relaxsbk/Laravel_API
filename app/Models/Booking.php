@@ -56,12 +56,12 @@ class Booking extends Model
         });
     }
 
-    public function resources(): BelongsTo
+    public function resource(): BelongsTo
     {
         return $this->belongsTo(Resource::class);
     }
 
-    public function users(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

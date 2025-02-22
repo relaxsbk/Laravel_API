@@ -6,21 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Booking\StoreBookingRequest;
 use App\Http\Resources\Booking\BookingResource;
 use App\Models\Booking;
-use App\Models\Resource;
 use App\Repositories\Bookings\BookingRepository;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
-use Illuminate\Support\Carbon;
 
 class BookingController extends Controller implements HasMiddleware
 {
-    public function index()
-    {
-        //
-    }
-
-
     public function store(BookingRepository $bookingRepository, StoreBookingRequest $request)
     {
         $resourceId = $request->resource_id;
