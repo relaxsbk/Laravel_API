@@ -24,3 +24,9 @@
 ```bash
   sail artisan migrate --env=testing
 ```
+>### Для отправки уведомления на почту использовал сервис mailtrap.io <br>
+>### Все уведомления падают в очереди
+
+```bash
+  sail artisan queue:work
+```
