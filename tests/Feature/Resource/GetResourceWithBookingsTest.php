@@ -54,4 +54,36 @@ class GetResourceWithBookingsTest extends TestCase
             ],
         ]);
     }
+
+    public function test_get_resource_with_not_bookings(): void
+    {
+        $response = $this->getJson(route('resources.bookings', $this->resource->id));
+
+        $response->assertSuccessful();
+
+        $response->assertJsonStructure([
+            'id', 'name', 'type', 'description', 'available', 'createdAt', 'bookings'
+        ]);
+
+        $response->assertJson([
+            'id' => $this->resource->id,
+            'name' => $this->resource->name,
+            'type' => $this->resource->type,
+            'description' => $this->resource->description,
+            'available' => $this->resource->available,
+            'createdAt' => $this->resource->createdAt(),
+            'bookings' => [],
+        ]);
+    }
+
+    public function test_get_resource_not_found(): void
+    {
+        $resource = Resource::factory()->create(['available' => 0]);
+
+        $response = $this->get(route('resources.bookings', $resource->id));
+
+        $response->assertNotFound();
+        $response->assertJsonStructure(['message']);
+        $response->assertJson(['message' => __('messages.resource_not_found')]);
+    }
 }
