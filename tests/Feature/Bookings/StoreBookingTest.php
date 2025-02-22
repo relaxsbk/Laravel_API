@@ -7,6 +7,7 @@ use App\Models\Resource;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 class StoreBookingTest extends TestCase
@@ -22,6 +23,8 @@ class StoreBookingTest extends TestCase
 
         $this->user = User::factory()->create();
         $this->resource = Resource::factory()->create();
+
+        Sanctum::actingAs($this->user);
     }
 
     public function test_store_booking_successfully()

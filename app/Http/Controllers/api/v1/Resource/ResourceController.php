@@ -59,6 +59,7 @@ class ResourceController extends Controller implements HasMiddleware
     {
         return [
             new Middleware(['auth:sanctum', 'isAdmin'], except:['index','show']),
+            new Middleware(['draftResource'], only:['show']),
         ];
     }
 }

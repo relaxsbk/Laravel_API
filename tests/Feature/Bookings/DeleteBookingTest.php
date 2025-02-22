@@ -20,7 +20,7 @@ class DeleteBookingTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = User::factory()->create();
+        $this->user = User::factory()->create(['role' => 'user']);
         $this->resource = Resource::factory()->create();
 
         Sanctum::actingAs($this->user);
@@ -68,7 +68,7 @@ class DeleteBookingTest extends TestCase
 
     public function test_user_cannot_delete_a_booking_that_is_not_his_own()
     {
-        $user2 = User::factory()->create(['role' => 'user']);
+        $user2 = User::factory()->create();
 
         $relations = [
             'user_id' => $user2->id,

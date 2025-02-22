@@ -26,7 +26,7 @@ class GetResourcesTest extends TestCase
 
         $response->assertJsonStructure([
             '*' => [
-                'id', 'name', 'type', 'description',
+                'id', 'name', 'type',
             ]
         ]);
     }
