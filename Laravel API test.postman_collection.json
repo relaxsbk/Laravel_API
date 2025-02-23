@@ -1,0 +1,1328 @@
+{
+	"info": {
+		"_postman_id": "24818218-53e1-4264-9822-1ad9f75ca9fb",
+		"name": "Laravel API test",
+		"description": "Документация для тестового задания.\n\nВ проекте используются переменные, они добавлены в коллекцию.\n\n_Вот примеры переменных как должны выглядить_\n\n| переменная | значение |\n| --- | --- |\n| host | **domain/api** |\n| bearer | **токен который выдаётся после авторизации** |\n| id_resource | ID нужного ресурса |\n\n> Дальше все маршруты выглядет без доменного имени",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23816286"
+	},
+	"item": [
+		{
+			"name": "Resources",
+			"item": [
+				{
+					"name": "resources",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/v1/resources",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"resources"
+							]
+						},
+						"description": "### Получение всех доступных ресурсов\n\n#### Request\n\n- Method: GET\n    \n- URL: `{{host}}/v1/resources`\n    \n\n#### Response\n\nОтвет представляет собой JSON содержащий объекты ресурсов\n\n- `id` (number): Уникальный идентификатор ресурса.\n    \n- `name` (string): Название ресурса\n    \n- `type` (string): Тип ресурса\n    \n\nПример ответа:\n\n``` json\n[\n    {\n        \"id\": 1,\n        \"name\": \"Unde exercitationem.\",\n        \"type\": \"Nursery Worker\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Velit ab tempora.\",\n        \"type\": \"Nuclear Engineer\"\n    },\n]\n\n ```"
+					},
+					"response": [
+						{
+							"name": "Example_resources",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "/v1/resources",
+									"path": [
+										"v1",
+										"resources"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:89"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.3"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 23 Feb 2025 09:15:16 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Unde exercitationem.\",\n        \"type\": \"Nursery Worker\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Velit ab tempora.\",\n        \"type\": \"Nuclear Engineer\"\n    },\n    {\n        \"id\": 6,\n        \"name\": \"Culpa suscipit.\",\n        \"type\": \"Legislator\"\n    },\n    {\n        \"id\": 8,\n        \"name\": \"Tempore reiciendis.\",\n        \"type\": \"Portable Power Tool Repairer\"\n    },\n    {\n        \"id\": 10,\n        \"name\": \"Rerum voluptas.\",\n        \"type\": \"Janitorial Supervisor\"\n    },\n    {\n        \"id\": 11,\n        \"name\": \"Natus ullam eum.\",\n        \"type\": \"Engineering\"\n    },\n    {\n        \"id\": 13,\n        \"name\": \"Quidem quisquam eum.\",\n        \"type\": \"City\"\n    },\n    {\n        \"id\": 14,\n        \"name\": \"Voluptatum sit.\",\n        \"type\": \"Precision Printing Worker\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "resource",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{host}}/v1/resources/{{id_resource}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"resources",
+								"{{id_resource}}"
+							]
+						},
+						"description": "### Получение ресурса по его ID\n\n#### Request\n\n- Method: GET\n    \n- URL: `{{host}}/v1/resources/{id_resource}`\n    \n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n- `id` (number): Уникальный идентификатор ресурса.\n    \n- `name` (string): Название ресурса\n    \n- `type` (string): Тип ресурса\n    \n- `description` (string): Описание ресурса\n    \n- `available` (bool): Доступность ресурса\n    \n- `createdAt` (string): Дата создания ресурса\n    \n\n``` json\n{\n  \"id\": 0,\n  \"name\": \"\",\n  \"type\": \"\",\n  \"description\": \"\",\n  \"available\": 0,\n  \"createdAt\": \"\"\n}\n\n ```\n\n#### Если ресурс не найден по id\n\n- Status: 404\n    \n\n``` json\n{\n  \"message\": \"Resource not found\"\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "Example_available_resource",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "/v1/resources/1",
+									"path": [
+										"v1",
+										"resources",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:89"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.3"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 23 Feb 2025 09:27:35 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"Unde exercitationem.\",\n    \"type\": \"Nursery Worker\",\n    \"description\": \"Lory. Alice replied in an angry tone, 'Why, Mary Ann, and be turned out of his tail. 'As if I know I have to whisper a hint to Time, and round Alice, every now and then; such as, that a red-hot poker will burn you if you cut your finger VERY deeply with a melancholy way, being quite unable to.\",\n    \"available\": 1,\n    \"createdAt\": \"2025-02-21\"\n}"
+						},
+						{
+							"name": "Example_not_available_resource",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{host}}/v1/resources/2",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"resources",
+										"2"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:89"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.3"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 23 Feb 2025 09:28:24 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Resource not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "resource with booking",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/v1/resources/{{id_resource}}/bookings",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"resources",
+								"{{id_resource}}",
+								"bookings"
+							]
+						},
+						"description": "### Получение ресурса со всеми бронированиями\n\n#### Request\n\n- Method: GET\n    \n- URL: `{{host}}/v1/resources/{id_resource}/bookings`\n    \n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n\n``` json\n{\n    \"id\": 1,\n    \"name\": \"Unde exercitationem.\",\n    \"type\": \"Nursery Worker\",\n    \"description\": \"Lory. Alice replied in an angry tone, 'Why, Mary Ann, and be turned out of his tail. 'As if I know I have to whisper a hint to Time, and round Alice, every now and then; such as, that a red-hot poker will burn you if you cut your finger VERY deeply with a melancholy way, being quite unable to.\",\n    \"available\": 1,\n    \"createdAt\": \"2025-02-21\",\n    \"bookings\": [\n        {\n            \"user\": \"Pavel\",\n            \"start_time\": \"2025-02-23 10:00:00\",\n            \"end_time\": \"2025-02-24 12:00:00\"\n        }\n    ]\n}\n\n ```\n\n#### Response\n\nЕсли бронирований нет, то будет отправлен пустой массив, для обратки его на фронт части\n\nЕсли ресурса нет, то доступ к этому маршруту будет не доступен\n\n- Status: 404\n    \n\n``` json\n{\n  \"message\": \"Resource not found\"\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "resource_with_booking",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "/v1/resources/1/bookings",
+									"path": [
+										"v1",
+										"resources",
+										"1",
+										"bookings"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:89"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.3"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 23 Feb 2025 09:41:13 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"Unde exercitationem.\",\n    \"type\": \"Nursery Worker\",\n    \"description\": \"Lory. Alice replied in an angry tone, 'Why, Mary Ann, and be turned out of his tail. 'As if I know I have to whisper a hint to Time, and round Alice, every now and then; such as, that a red-hot poker will burn you if you cut your finger VERY deeply with a melancholy way, being quite unable to.\",\n    \"available\": 1,\n    \"createdAt\": \"2025-02-21\",\n    \"bookings\": [\n        {\n            \"user\": \"Pavel\",\n            \"start_time\": \"2025-02-23 10:00:00\",\n            \"end_time\": \"2025-02-24 12:00:00\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"test resource\",\n    \"type\": \"test type\",\n    \"description\": \"\",\n    \"available\" : 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/resources",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"resources"
+							]
+						},
+						"description": "### Добавление нового ресурса\n\nТребуется **bearer токен** администратора для доступа к маршруту\n\n#### Request Body\n\n_**Обязательно должен быть заголовок Accept application/json**_\n\n- `name`: (string, обязательное поле) Название ресурса.\n    \n- `type`: (string, обязательное поле) Тип ресурса.\n    \n- `description`: (string, не обязательное поле) Описание ресурса.\n    \n- `available`: (bool) Доступность ресурса.\n    \n\n#### Response\n\nОтвет отображает только что созданную запись\n\n``` json\n{\n  \"id\": 25,\n  \"name\": \"test resource\",\n  \"type\": \"test type\",\n  \"description\": null,\n  \"available\" : 1\n  \"createdAt\": \"2025-02-23\"\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "store_resource",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"test resource\",\n    \"type\": \"test type\",\n    \"description\": \"\",\n    \"available\" : 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "/v1/resources",
+									"path": [
+										"v1",
+										"resources"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:89"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.3"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 23 Feb 2025 09:48:04 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 16,\n    \"name\": \"test resource\",\n    \"type\": \"test type\",\n    \"description\": null,\n    \"available\": 1,\n    \"createdAt\": \"2025-02-23\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update all fields resource",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testing name\",\n    \"type\": \"testing type\",\n    \"description\": \"Testing desc\",\n    \"available\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/resources/{{id_resource}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"resources",
+								"{{id_resource}}"
+							]
+						},
+						"description": "### Обновление всех полей у ресурса\n\nТребуется **bearer токен** администратора для доступа к маршруту\n\n#### Request Body\n\n_**Обязательно должен быть заголовок Accept application/json**_\n\n- `name`: (string) Название ресурса.\n    \n\n``` json\n{\n    \"name\": \"updated_name\"\n    \"type\": \"updated_type\",\n    \"description\": \"updated_desc\",\n    \"available\": 1,\n}\n\n ```\n\n#### Response\n\n- Status: 200 OK\n    \n- Content-Type: application/json\n    \n\n``` json\n{\n    \"id\": 16,\n    \"name\": \"updated_name\"\n    \"type\": \"updated_type\",\n    \"description\": \"updated_desc\",\n    \"available\": 1,\n    \"createdAt\": \"2025-02-23\"\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"testing name\",\n    \"type\": \"testing type\",\n    \"description\": \"Testing desc\",\n    \"available\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "/v1/resources/",
+									"path": [
+										"v1",
+										"resources",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:89"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.3"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 23 Feb 2025 15:42:07 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"testing name\",\n    \"type\": \"testing type\",\n    \"description\": \"Testing desc\",\n    \"available\": 1,\n    \"createdAt\": \"2025-02-21\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update field resource",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testing\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/resources/{{id_resource}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"resources",
+								"{{id_resource}}"
+							]
+						},
+						"description": "### Обновление одного поля у ресурса\n\nТребуется **bearer токен** администратора для доступа к маршруту\n\n#### Request Body\n\n_**Обязательно должен быть заголовок Accept application/json**_\n\n- `name`: (string) Название ресурса\n    \n\nExample:\n\n``` json\n{\n    \"name\": \"updated_name\"\n}\n\n ```\n\n#### Response\n\n- Status: 200 OK\n    \n- Content-Type: application/json\n    \n\nВозвращается весь объект уже с обновлённым полем\n\n``` json\n{\n    {\n    \"id\": 1,\n    \"name\": \"testing\",\n    \"type\": \"Nursery Worker\",\n    \"description\": \"Lory. Alice replied in an angry tone, 'Why, Mary Ann, and be turned out of his tail. 'As if I know I have to whisper a hint to Time, and round Alice, every now and then; such as, that a red-hot poker will burn you if you cut your finger VERY deeply with a melancholy way, being quite unable to.\",\n    \"available\": 1,\n    \"createdAt\": \"2025-02-21\"\n}\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "update_field_resource",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"testing\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "/v1/resources/",
+									"path": [
+										"v1",
+										"resources",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:89"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.3"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 23 Feb 2025 15:34:58 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"testing\",\n    \"type\": \"Nursery Worker\",\n    \"description\": \"Lory. Alice replied in an angry tone, 'Why, Mary Ann, and be turned out of his tail. 'As if I know I have to whisper a hint to Time, and round Alice, every now and then; such as, that a red-hot poker will burn you if you cut your finger VERY deeply with a melancholy way, being quite unable to.\",\n    \"available\": 1,\n    \"createdAt\": \"2025-02-21\"\n}"
+						}
+					]
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/v1/resources/{{id_resource}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"resources",
+								"{{id_resource}}"
+							]
+						},
+						"description": "### Удаление ресурса по его ID\n\nТребуется **bearer токен** администратора для доступа к маршруту\n\n#### Request\n\n_**Обязательно должен быть заголовок Accept application/json**_\n\n- Method: DELETE\n    \n- URL: `{{host}}/v1/resources/{{id_resource}}`\n    \n\n#### Response\n\nТело ответа содержить сообщение об удачном удалении c кодом 200\n\n``` json\n{\n    \"message\": \"Resource deleted successfully\"\n}\n\n ```\n\nЕсли такого ресурс не будет найден, то будет ответ с ошибкой 404\n\n``` json\n{\n    \"message\": \"Route not found\"\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "/v1/resources/",
+									"path": [
+										"v1",
+										"resources",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:89"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.3"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 23 Feb 2025 15:49:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Resource deleted successfully\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Полное взаимодействие с ресурсами\n\nСодерижит CRUD + вывод ресурсов с бронированиями"
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Pavel\",\n    \"email\": \"alexis33@example.net\",\n    \"password\": \"12345\",\n    \"password_confirmation\":\"12345\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"register"
+							]
+						},
+						"description": "### Регистрация пользователя\n\n#### Request Body\n\n_**Обязательно должен быть заголовок Accept application/json**_\n\n- `name` (string, required): Имя пользователя.\n    \n- `email` (string, required): Адрес электронной почты\n    \n- `password` (string, required): Пароль.\n    \n- `password_confirmation` (string, required): Подтверждение пароля.\n    \n\n``` json\n{\n    \"name\": \"Pavel\",\n    \"email\": \"alexis33@example.net\",\n    \"password\": \"12345\",\n    \"password_confirmation\":\"12345\"\n}\n\n ```\n\n- `message` (string): Сообщение об успешной регистрации или ошибке.\n    \n\n``` json\n{\n\"message\": \"User registered successfully\"\n}\n\n ```\n\n- статус 422\n    \n\n``` json\n{\n    \"message\": \"The email has already been taken.\",\n    \"errors\": {\n        \"email\": [\n            \"The email has already been taken.\"\n        ]\n    }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Pavel\",\n    \"email\": \"alexis33@example.net\",\n    \"password\": \"12345\",\n    \"password_confirmation\":\"12345\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "/v1/register",
+									"path": [
+										"v1",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:89"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.3"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 23 Feb 2025 16:20:07 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User registered successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@admin.com\",\n    \"password\": \"admin11\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"login"
+							]
+						},
+						"description": "### Авторизация пользователя\n\n#### Request Body\n\n_**Обязательно должен быть заголовок Accept application/json**_\n\n- `name` (string, required): Имя пользователя.\n    \n- `email` (string, required): Адрес электронной почты\n    \n\n#### Response\n\nОтветом является токен доступа для пользователя\n\n``` json\n{\n  \"token\": \"string\"\n}\n\n ```\n\nПример ошибки\n\n- статус 422\n    \n\n``` json\n{\n    \"message\": \"Email address or password is incorrect\",\n    \"errors\": {\n        \"email\": [\n            \"Email address or password is incorrect\"\n        ]\n    }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"pah4n1989@gmail.com\",\n    \"password\": \"admin11\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "/v1/login",
+									"path": [
+										"v1",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:89"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.3"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 23 Feb 2025 16:23:03 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"9|F1X0rDAhxYecxhvHKe0zF4mQJl1DtwNYAnykE1Gaa9a680ce\"\n}"
+						}
+					]
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/v1/logout",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"logout"
+							]
+						},
+						"description": "### Выход из аккаунта\n\nТребуется **bearer токен** администратора для доступа к маршруту\n\n#### Request\n\n_**Обязательно должен быть заголовок Accept application/json**_\n\n#### Response\n\n- Status: 200\n    \n\n``` json\n{\n    \"message\": \"Logout successfully\"\n}\n\n ```\n\nЕсли токена не будет то будет ошибка не авторизированный запрос\n\n- Status: 401\n    \n\n``` json\n{\n    \"message\": \"Unauthenticated.\"\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "/v1/logout",
+									"path": [
+										"v1",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:89"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.3"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 23 Feb 2025 16:32:29 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Logout successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "logoutAll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/v1/logoutAll",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"logoutAll"
+							]
+						},
+						"description": "### Выход со всех устройств\n\nТребуется **bearer токен** администратора для доступа к маршруту\n\n#### Request\n\n_**Обязательно должен быть заголовок Accept application/json**_\n\n#### Response\n\n- Status: 200\n    \n\n``` json\n{\n    \"message\": \"Successful logout from all devices\"\n}\n\n ```\n\nЕсли токена не будет то будет ошибка не авторизированный запрос\n\n- Status: 401\n    \n\n``` json\n{\n    \"message\": \"Unauthenticated.\"\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "logoutAll",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "/v1/logoutAll",
+									"path": [
+										"v1",
+										"logoutAll"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:89"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.3"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 23 Feb 2025 16:33:30 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Successful logout from all devices\"\n}"
+						}
+					]
+				}
+			],
+			"description": "**Авторизация и регистрация пользователя.  \nТак же выход с аккаунта путём удаления токена.  \nи выход со всех устройств путём удаления всех токенов.**"
+		},
+		{
+			"name": "Bookings",
+			"item": [
+				{
+					"name": "booking store",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 1,\n    \"resource_id\": 2,\n    \"start_time\": \"2025-02-24 10:00:00\",\n    \"end_time\": \"2025-02-25 12:00:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/bookings",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"bookings"
+							]
+						},
+						"description": "### Добавление бронирования\n\nТребуется **bearer токен** пользователя для доступа к маршруту\n\n#### Request Body\n\n_**Обязательно должен быть заголовок Accept application/json**_\n\n- `user_id` (integer) - id пользователя .\n    \n- `resource_id` (integer) - id ресурса.\n    \n- `start_time` (string) - Время старта брони в формате \"YYYY-MM-DD HH:MM:SS\".\n    \n- `end_time` (string) - Время окончания брони в формате \"YYYY-MM-DD HH:MM:SS\".\n    \n\n#### Response\n\n``` json\n{\n    \"message\": \"Booking created successfully\",\n    \"booking\": {\n        \"id\": 1,\n        \"user_id\": 1,\n        \"resource_id\": 2,\n        \"start_time\": \"2025-02-24 10:00:00\",\n        \"end_time\": \"2025-02-25 12:00:00\",\n        \"createdAt\": \"2025-02-23\",\n        \"updatedAt\": \"2025-02-23\"\n    }\n}\n\n ```\n\nЕсли время занято\n\n- status: 400\n    \n\n``` json\n{\n    \"message\": \"Resource is already booked for this time\"\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "booking store",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": 1,\n    \"resource_id\": 2,\n    \"start_time\": \"2025-02-24 10:00:00\",\n    \"end_time\": \"2025-02-25 12:00:00\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/v1/bookings",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"bookings"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:89"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.3"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 23 Feb 2025 17:19:26 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Booking created successfully\",\n    \"booking\": {\n        \"id\": 1,\n        \"user_id\": 1,\n        \"resource_id\": 2,\n        \"start_time\": \"2025-02-24 10:00:00\",\n        \"end_time\": \"2025-02-25 12:00:00\",\n        \"createdAt\": \"2025-02-23\",\n        \"updatedAt\": \"2025-02-23\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "booking cancel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/v1/bookings/{{id_booking}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"bookings",
+								"{{id_booking}}"
+							]
+						},
+						"description": "### Отмена брони\n\nТребуется **bearer токен** пользователя для доступа к маршруту\n\nотмена брони через id этой брони\n\n#### Request\n\n_**Обязательно должен быть заголовок Accept application/json**_\n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n\n``` json\n{\n    \"message\": \"Booking deleted successfully\"\n}\n\n ```\n\nЕсли такой брони нет\n\n- Status: 404\n    \n\n``` json\n{\n    \"message\": \"Route not found\"\n}\n\n ```"
+					},
+					"response": []
+				}
+			],
+			"description": "бронирование"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "bearer",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "id_resource",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "id_booking",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
